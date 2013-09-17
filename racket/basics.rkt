@@ -2,9 +2,10 @@
 
 ;;; Return the sum of all numbers up to and including n for 0 <= n.
 (define (sum-to-n n)
-  (if (zero? n)
-      0
-      (+ n (sum-to-n (- n 1)))))
+  (cond
+   ((zero? n) 0)
+   (else
+    (+ n (sum-to-n (- n 1))))))
 
 ;;; Calculate n choose r, for 0 <= n, 0 <= r <= n
 (define (combination n r)
@@ -12,26 +13,18 @@
    ((zero? r) 1)
    ((= n r) 1)
    (else
-    (+ (combination (- n 1) r)
-       (combination (- n 1) (- r 1))))))
-
-;;;Return the nth fibonacci number 
-(define (fibonacci n)
-  (cond
-   ((= 0 n) 0)
-   ((= 1 n) 1)
-   (else 
-    (+ (fibonacci (- n 1)) (fibonacci (- n 2))))))
+    (+ (combination (- n 1) (- r 1))
+       (combination (- n 1) r)))))
 
 ;;; Return the sum of all numbers in a list
 (define (sum lst)
-  (cond 
+  (cond
    ((null? lst) 0)
    (else
-   (+ (car lst) (sum (cdr lst))))))
+    (+ (car lst) (sum (cdr lst))))))
 
 ;;; Return whether element a is contained in list lst
-(define (member? a lst) 
+(define (member? a lst)
   (cond
    ((null? lst) #f)
    ((equal? a (car lst)) #t)
@@ -39,9 +32,9 @@
     (member? a (cdr lst)))))
 
 ;;; Return a list with the *first* instance of element a removed if present
-(define (rember lst a) 
-  (cond 
-   ((null? lst) lst)
+(define (rember lst a)
+  (cond
+   ((null? lst) '())
    ((equal? a (car lst)) (cdr lst))
    (else
     (cons (car lst) (rember (cdr lst) a)))))
