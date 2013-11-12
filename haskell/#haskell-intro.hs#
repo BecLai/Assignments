@@ -15,28 +15,18 @@ qsort (pivot:xs) =
 
 fib n = 
     let fibHelper (a, b) 0 = a
-        fibHelper (a, b) 1 = b
-        fibHelper (a,b) n = fibHelper (b, a + b) (n - 1)
-    in fibHelper (0,1) n
-
-fibs = 0 : 1 : next fibs 
-    where next ( a : b : xs) = ( a + b) : next ( b : xs) 
+        fibHelper (a,b) 1 = b
+        fibHelper (a, b) n = fibHelper (b, a + b) ( n -1)
+    inin fibHelper (0,1) n = fibHelper(b, a + b)(n - 1) 
+    
 
 -- Problem 3 Bonus: Construct an infinite sequence of fibonacci numbers, fibs
 
 
 -- Problem 4: http://projecteuler.net/problem=6
 
-euler4 = 
-    let sumOfSquares = sum[x * x | x <- [1..100]]
-        squareOfSums = sum[1..100]^2
-    in squareOfSums - sumOfSquares 
 
 -- Problem 5: http://projecteuler.net/problem=9
 
-euler5 = foldl lcm [ 1..20]
 
 -- Problem 6: http://projecteuler.net/problem=5
-
-euler9 =
-    head [ a * b * c | a <- [1..1000], b <- [1..1000], let c = 1000 - a - b, c > 0, a ^ 2 + b ^ 2 == c^2] 
