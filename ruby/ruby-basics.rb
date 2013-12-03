@@ -76,14 +76,3 @@ size = array.length
   end
   array
 end
-
-##
-# Perform a Rot13 transformation on a string.
-#
-def rot13(string)
-
-end
-
-def query_classes(data, criteria)
-
-end
