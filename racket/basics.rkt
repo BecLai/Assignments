@@ -7,6 +7,8 @@
    (else
     (+ n (sum-to-n (- n 1))))))
 
+(define (fibonacci n) 0)
+
 ;;; Calculate n choose r, for 0 <= n, 0 <= r <= n
 (define (combination n r)
   (cond
@@ -57,25 +59,17 @@
 	(else 
 	(let ([rest (intersect (cdr set1) set2)])
 		(if (member? (car set1) set2) 
-			(if (member? (car set1) set2)
 				(cons (car set1) rest) 
 				rest)))))
 
 ;;; Return whether the list contains two equal adjacent elements
 (define (two-in-a-row? lst) 
-	((null? lst) #f) 
-	((null? (cdr lst)) #f)  
-	((equal? (car lst) (car (cdr lst))) #t) 
-	(else 
-	(two-in-a-row? (cdr lst)))) 
-
-(define (two-in-a-row? lst) 
-	(define (two-in-a-row-helper last lst))
+	(define (two-in-a-row-helper last lst)
 		(cond 
-			((null? lst) #f) 
-			((equal? last (car lst)) #t) 
-			(else 
-			(two-in-a-row-helper (car lst) (cdr lst)))))  
+		((null? lst) #f) 
+		((equal? last (car lst)) #t) 
+		(else 
+		(two-in-a-row-helper (car lst) (cdr lst)))))  
 	(and (not (null? lst)) 
 		(two-in-a-row-helper (car lst) (cdr lst)))) 
 
@@ -84,7 +78,7 @@
 	(cond
 		((zero? n) (car lst))
 		(else
-		(nth (cdr lst) (-n 1))))) 
+		(nth (cdr lst) (- n 1))))) 
 
 ;;; Return a list containing the unique elements of lst
 (define (dedup lst) 
@@ -98,10 +92,11 @@
 ;;; Return a list containing the elements of lst in reverse order
 (define (reverse lst) 
 	(define (rev-h lst rev) 
-		((null? lst) rev) 
+		(cond
+		((null? lst) rev)
 		(else 
-		(rev-h (cdr lst) (cons (car lst) rev)))))
-	(rev-h lst '())) 
+		 (rev-h (cdr lst) (cons (car lst) rev)))))
+	(rev-h lst '()))
 
 (provide
  sum-to-n

@@ -14,7 +14,7 @@
 	(cond 
 		((null? lst) '())
 		(else 
-			(let* ((pivot (car lst))
+			(let* ((pivot (car lst)))
 				(less-than? (lambda (x) (<= x pivot)) 
 				(greater-than? (lambda (x) (> x pivot)))) 
 			(append 
